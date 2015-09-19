@@ -19,16 +19,17 @@ namespace Lab_01_Chart
             InitializeComponent();
         }
 
-        private decimal startNum;
-        private decimal endNum;
+        private int startNum;
+        private int endNum;
         private int pointCount;
-        private List<int> list;
+        //private List<int> list;
+        private int[] array;
         private readonly Random rnd = new Random();
 
         private void button1_Click(object sender, EventArgs e)
         {
-            startNum = Convert.ToDecimal(startNumTextBox.Text);
-            endNum = Convert.ToDecimal(endNumTextBox.Text);
+            startNum = Convert.ToInt32(startNumTextBox.Text);
+            endNum = Convert.ToInt32(endNumTextBox.Text);
             pointCount = Convert.ToInt32(pointCountTextBox.Text);
             var res = getMeasures(startNum, endNum, pointCount);
             drawChart(res);
@@ -39,46 +40,72 @@ namespace Lab_01_Chart
 
         private void getRandomNumbers(decimal count)
         {
-            decimal i = 0;
-            list = new List<int>();
+            int i = 0;
+            //list = new List<int>();
+            array = new int[Convert.ToInt32(count)];
             while (i++ < count)
             {
-                list.Add(rnd.Next());
+                array[i] = rnd.Next();
+                //list.Add(rnd.Next());
             }
         }
 
-        private void drawChart(long[] res)
+        private void drawChart(long[][] res)
         {
             chart1.Series[0].ChartType = SeriesChartType.Spline;
             chart1.Series[0].Points.Clear();
             chart1.Series[0].Name = "List.Sort()";
+            chart1.Series[1].ChartType = SeriesChartType.Spline;
+            chart1.Series[1].Points.Clear();
+            chart1.Series[1].Name = "Quicksort";
+
             foreach (var t in res)
                 chart1.Series[0].Points.AddY(t);
         }
 
-        private long[] getMeasures(decimal start, decimal end, int count)
+        private long[][] getMeasures(decimal start, decimal end, int count)
         {
             System.Diagnostics.Stopwatch myStopwatch = new System.Diagnostics.Stopwatch();
 
-            var res = new long[count];
+            var res = new long[3, count];
             var fraction = Math.Round((end - start)/(count-1));
             for (int i = 0; i < count; i++)
             {
                 var tempPointer = (fraction*(i)) + start;
                 getRandomNumbers(tempPointer);
-                var tries = new long[5];
+                var tries = new long[3, 5];
                 for (var j = 0; j < 5; j++)
                 {
-                    myStopwatch.Start();
                     // Тут вызываем разные сортировки, передаем как параметр
-                    list.Sort();
+                    myStopwatch.Start();
+                    Array.Sort(array);
                     myStopwatch.Stop();
-                    tries[j] = myStopwatch.ElapsedMilliseconds;
+                    tries[0, j] = myStopwatch.ElapsedMilliseconds;
+                    myStopwatch.Start();
+                    //TODO переделать нормальный вызов через новый метод
+                    Quicksort.quicksort(array, 0, array.Length);
+                    myStopwatch.Stop();
+                    tries[1, j] = myStopwatch.ElapsedMilliseconds;
                 }
-                Array.Sort(tries);
-                res[i] = tries[2];
+                //Array.Sort(tries);
+                foreach (var temp in tries)
+                {
+                    Console.WriteLine(temp);
+                }
+                Console.WriteLine();
+                //tries[0, 0]
+                res[0, i] = tries[0, 2];
+                res[1, i] = tries[1, 2];
             }
             return res;
+        }
+
+        private void resetSettingsBtn_Click(object sender, EventArgs e)
+        {
+            startNumTextBox.Text = "";
+            endNumTextBox.Text = "";
+            pointCountTextBox.Text = "";
+
         }
     }
 }
