@@ -8,9 +8,9 @@ namespace Lab_01_Chart
 {
     public static class Quicksort
     {
-        public static int partition(int[] array, int start, int end)
+        private static int partition(int[] array, int start, int end)
         {
-            int marker = start;
+            var marker = start;
             for (int i = start; i <= end; i++)
             {
                 if (array[i] <= array[end])
