@@ -6,33 +6,43 @@ using System.Threading.Tasks;
 
 namespace Lab_01_Chart
 {
-    public static class Quicksort
+    public class Quicksort
     {
-        private static int partition(int[] array, int start, int end)
+        public void quicksort(int[] input, int low, int high)
         {
-            var marker = start;
-            for (int i = start; i <= end; i++)
+            int pivot_loc = 0;
+
+            if (low < high)
             {
-                if (array[i] <= array[end])
-                {
-                    int temp = array[marker]; // swap
-                    array[marker] = array[i];
-                    array[i] = temp;
-                    marker += 1;
-                }
+                pivot_loc = partition(input, low, high);
+                quicksort(input, low, pivot_loc - 1);
+                quicksort(input, pivot_loc + 1, high);
             }
-            return marker - 1;
         }
 
-        public static void quicksort(int[] array, int start, int end)
+        private int partition(int[] input, int low, int high)
         {
-            if (start >= end)
+            int pivot = input[high];
+            int i = low - 1;
+
+            for (int j = low; j < high - 1; j++)
             {
-                return;
+                if (input[j] <= pivot)
+                {
+                    i++;
+                    swap(input, i, j);
+                }
             }
-            int pivot = partition(array, start, end);
-            quicksort(array, start, pivot - 1);
-            quicksort(array, pivot + 1, end);
+            swap(input, i + 1, high);
+            return i + 1;
+        }
+
+        private void swap(int[] ar, int a, int b)
+        {
+            int temp;
+            temp = ar[a];
+            ar[a] = ar[b];
+            ar[b] = temp;
         }
     }
 }

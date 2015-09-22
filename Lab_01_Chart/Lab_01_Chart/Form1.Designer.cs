@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabsId = new System.Windows.Forms.TabControl();
             this.settingTab = new System.Windows.Forms.TabPage();
@@ -45,6 +45,7 @@
             this.startNumTextBox = new System.Windows.Forms.TextBox();
             this.drawBtn = new System.Windows.Forms.Button();
             this.chartTab = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.tabsId.SuspendLayout();
             this.settingTab.SuspendLayout();
@@ -54,27 +55,27 @@
             // chart1
             // 
             this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart1.Legends.Add(legend4);
             this.chart1.Location = new System.Drawing.Point(6, 6);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Legend = "Legend1";
-            series2.Name = "Series2";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Legend = "Legend1";
-            series3.Name = "Series3";
-            this.chart1.Series.Add(series1);
-            this.chart1.Series.Add(series2);
-            this.chart1.Series.Add(series3);
+            series10.ChartArea = "ChartArea1";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series10.Legend = "Legend1";
+            series10.Name = "Series1";
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series11.Legend = "Legend1";
+            series11.Name = "Series2";
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series12.Legend = "Legend1";
+            series12.Name = "Series3";
+            this.chart1.Series.Add(series10);
+            this.chart1.Series.Add(series11);
+            this.chart1.Series.Add(series12);
             this.chart1.Size = new System.Drawing.Size(460, 368);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chartId";
@@ -150,7 +151,7 @@
             this.pointCountTextBox.Name = "pointCountTextBox";
             this.pointCountTextBox.Size = new System.Drawing.Size(100, 20);
             this.pointCountTextBox.TabIndex = 3;
-            this.pointCountTextBox.Text = "13";
+            this.pointCountTextBox.Text = "10";
             // 
             // endNumTextBox
             // 
@@ -158,7 +159,7 @@
             this.endNumTextBox.Name = "endNumTextBox";
             this.endNumTextBox.Size = new System.Drawing.Size(100, 20);
             this.endNumTextBox.TabIndex = 2;
-            this.endNumTextBox.Text = "100000";
+            this.endNumTextBox.Text = "10000";
             // 
             // startNumTextBox
             // 
@@ -166,7 +167,7 @@
             this.startNumTextBox.Name = "startNumTextBox";
             this.startNumTextBox.Size = new System.Drawing.Size(100, 20);
             this.startNumTextBox.TabIndex = 1;
-            this.startNumTextBox.Text = "1000";
+            this.startNumTextBox.Text = "10";
             // 
             // drawBtn
             // 
@@ -181,6 +182,7 @@
             // chartTab
             // 
             this.chartTab.BackColor = System.Drawing.Color.SkyBlue;
+            this.chartTab.Controls.Add(this.button1);
             this.chartTab.Controls.Add(this.chart1);
             this.chartTab.Location = new System.Drawing.Point(4, 22);
             this.chartTab.Name = "chartTab";
@@ -188,6 +190,16 @@
             this.chartTab.Size = new System.Drawing.Size(472, 412);
             this.chartTab.TabIndex = 1;
             this.chartTab.Text = "График";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(82, 381);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // Form1
             // 
@@ -221,6 +233,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }
 
