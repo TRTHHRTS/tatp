@@ -6,7 +6,8 @@ namespace Lab_01_Chart
     {
         SORT,
         QUICKSORT,
-        HEAPSORT
+        HEAPSORT,
+        SHELLSORT
     }
 
     class Sorts
@@ -15,10 +16,9 @@ namespace Lab_01_Chart
 
         public static long getSortTime(SORT_TYPE type, int[] array)
         {
-            var attempts = new long[5];
-            for (var j = 0; j < 5; j++)
+            var attempts = new long[Form1.ATTEMPTS];
+            for (var j = 0; j < Form1.ATTEMPTS; j++)
             {
-                //myStopwatch.Reset();
                 switch (type)
                 {
                     case SORT_TYPE.SORT:
@@ -27,15 +27,21 @@ namespace Lab_01_Chart
                         myStopwatch.Stop();
                         break;
                     case SORT_TYPE.QUICKSORT:
-                        Quicksort q = new Quicksort();
-                        myStopwatch.Start();
-                        q.quicksort(array, 0, array.Length - 1);
+                        Quicksort<int> q = new Quicksort<int>();
+                        myStopwatch.Restart();
+                        q.QSort(array);
                         myStopwatch.Stop();
                         break;
                     case SORT_TYPE.HEAPSORT:
                         Heapsort h = new Heapsort();
-                        myStopwatch.Start();
+                        myStopwatch.Restart();
                         h.heapSort(array);
+                        myStopwatch.Stop();
+                        break;
+                    case SORT_TYPE.SHELLSORT:
+                        ShellSort<int> s = new ShellSort<int>();
+                        myStopwatch.Restart();
+                        s.Sort(array);
                         myStopwatch.Stop();
                         break;
                     default:
@@ -44,7 +50,7 @@ namespace Lab_01_Chart
                 attempts[j] = myStopwatch.ElapsedMilliseconds;
             }
             Array.Sort(attempts);
-            return attempts[2];
+            return attempts[Form1.ATTEMT_NUMBER_TO_USE-1];
         }
     }
 }

@@ -6,43 +6,66 @@ using System.Threading.Tasks;
 
 namespace Lab_01_Chart
 {
-    public class Quicksort
+    public class Quicksort<T> where T : IComparable
     {
-        public void quicksort(int[] input, int low, int high)
+        public void QSort(T[] a)
         {
-            int pivot_loc = 0;
-
-            if (low < high)
-            {
-                pivot_loc = partition(input, low, high);
-                quicksort(input, low, pivot_loc - 1);
-                quicksort(input, pivot_loc + 1, high);
-            }
+            QuickSort1(a, 0, a.Length - 1);
         }
 
-        private int partition(int[] input, int low, int high)
+        //Быстрая сортировка с выбором опороного элемента по медиане из 3 элементов 
+        //и с контролем переполнения стека.
+        private void QuickSort1(T[] keys, int left, int right)
         {
-            int pivot = input[high];
-            int i = low - 1;
-
-            for (int j = low; j < high - 1; j++)
+            do
             {
-                if (input[j] <= pivot)
+                int a = left;
+                int b = right;
+                int m = a + ((b - a) >> 1);
+                CompareSwap(keys, a, m);
+                CompareSwap(keys, a, b);
+                CompareSwap(keys, m, b);
+                T p = keys[m];
+
+                do
                 {
-                    i++;
-                    swap(input, i, j);
+                    while (keys[a].CompareTo(p) < 0) ++a;
+                    while (p.CompareTo(keys[b]) < 0) --b;
+                    if (a > b) break;
+                    if (a < b)
+                    {
+                        T t = keys[a];
+                        keys[a] = keys[b];
+                        keys[b] = t;
+                    }
+                    a++;
+                    b--;
+                } while (a <= b);
+                if (b - left <= right - a)
+                {
+                    if (left < b)
+                    {
+                        QuickSort1(keys, left, b);
+                    }
+                    left = a;
                 }
-            }
-            swap(input, i + 1, high);
-            return i + 1;
+                else
+                {
+                    if (a < right)
+                    {
+                        QuickSort1(keys, a, right);
+                    }
+                    right = b;
+                }
+            } while (left < right);
         }
 
-        private void swap(int[] ar, int a, int b)
+        private static void CompareSwap(T[] keys, int a, int b)
         {
-            int temp;
-            temp = ar[a];
-            ar[a] = ar[b];
-            ar[b] = temp;
+            if ((a != b) && (keys[a].CompareTo(keys[b])) > 0)
+            {
+                T t = keys[a]; keys[a] = keys[b]; keys[b] = t;
+            }
         }
     }
 }
