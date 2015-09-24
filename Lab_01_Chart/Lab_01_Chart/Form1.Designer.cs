@@ -37,6 +37,10 @@
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabsId = new System.Windows.Forms.TabControl();
             this.settingTab = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,10 +50,6 @@
             this.startNumTextBox = new System.Windows.Forms.TextBox();
             this.drawBtn = new System.Windows.Forms.Button();
             this.chartTab = new System.Windows.Forms.TabPage();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.tabsId.SuspendLayout();
             this.settingTab.SuspendLayout();
@@ -59,11 +59,19 @@
             // chart1
             // 
             this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            this.chart1.BorderSkin.BackColor = System.Drawing.Color.LightGray;
+            this.chart1.BorderSkin.BorderColor = System.Drawing.Color.LightGray;
+            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.DarkGray;
             chartArea1.AxisX.Minimum = 1D;
             chartArea1.AxisX.Title = "Отсчеты";
+            chartArea1.AxisX2.LineColor = System.Drawing.Color.Silver;
+            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.DarkGray;
             chartArea1.AxisY.Title = "Время сортировки (мс)";
-            chartArea1.BorderColor = System.Drawing.Color.Gray;
+            chartArea1.AxisY2.LineColor = System.Drawing.Color.Silver;
+            chartArea1.BorderColor = System.Drawing.Color.LightGray;
+            chartArea1.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
             chartArea1.Name = "ChartArea1";
+            chartArea1.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Alignment = System.Drawing.StringAlignment.Center;
             legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
@@ -74,18 +82,22 @@
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Color = System.Drawing.Color.Red;
             series1.Legend = "Типы сортировок";
             series1.Name = "Array.Sort()";
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             series2.Legend = "Типы сортировок";
             series2.Name = "QuickSort";
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Color = System.Drawing.Color.Blue;
             series3.Legend = "Типы сортировок";
             series3.Name = "Heapsort";
             series4.ChartArea = "ChartArea1";
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Color = System.Drawing.Color.Lime;
             series4.Legend = "Типы сортировок";
             series4.Name = "Shellsort";
             this.chart1.Series.Add(series1);
@@ -127,6 +139,47 @@
             this.settingTab.TabIndex = 0;
             this.settingTab.Text = "Настройки";
             this.settingTab.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.IndianRed;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(246, 91);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(219, 33);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Остановить выполнение задачи";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(246, 51);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(220, 34);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Значения по-умолчанию";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 144);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(162, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Прогресс выполнения задачи:";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(6, 160);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(460, 23);
+            this.progressBar1.TabIndex = 2;
             // 
             // label3
             // 
@@ -214,47 +267,6 @@
             this.chartTab.Size = new System.Drawing.Size(473, 412);
             this.chartTab.TabIndex = 1;
             this.chartTab.Text = "График";
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(6, 160);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(460, 23);
-            this.progressBar1.TabIndex = 2;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 144);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(162, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Прогресс выполнения задачи:";
-            // 
-            // button1
-            // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(246, 51);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(220, 34);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Значения по-умолчанию";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.IndianRed;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(246, 91);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(219, 33);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Остановить выполнение задачи";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
